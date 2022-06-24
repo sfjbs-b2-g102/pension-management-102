@@ -40,7 +40,8 @@ pension-management-system
        Process Process Service
        Api Gateway
        
-       1. Eureka Server
+      
+1. Eureka Server
 The Eureka Server is responsible for registering all the microservices together so that they can communicate with each other with the help of their application names instead of their IP address which may be dynamic in nature.
 
 2. Authorization Service
@@ -48,14 +49,13 @@ This service is responsible to provide login access to the application and provi
 
 This service provides two controller END-POINTS:
 Open your spring boot application and run the service.
-Open your browser and head to this URL - http://localhost:8081/swagger-ui.html#/ this will redirect you to Swagger UI where you can test the service.
 Select the authorization controller header
 Login functionality
 Select login POST method and click try it out
 Then enter these correct username and password credentials as follows:
 {
-  "username": "admin1",
-  "password": "adminpass@1234"
+  "username": "Tangadorai",
+  "password": "password2"
 }
 Then hit execute and you will see a JWT Token generated. Copy this token to be used in the next step.
 For these incorrect credentials:
@@ -90,14 +90,14 @@ Steps and Action
      ALL the operations of the microservice.
 Endpoint
 
-  url- http://localhost:8083/pensionerDetailByAadhaar/123456789012 
+  url- http://localhost:9004/pensionerDetailByAadhaar/123456789012 
   This endpoint accept the user request and provides the Pensioner details. Access this using the POSTMAN client
   
   Input - Aadhaar Number => 123456789012
 Valid Response
 
 {
-  "name": "Achyuth",
+  "name": "DORAI",
   "dateOfBirth": "1956-09-12",
   "pan": "BHMER12436",
   "salary": 27000,
@@ -123,7 +123,7 @@ Description:
 This microservice is responsible for verifying pension amount and bank charges for provided aadhaar number. Single endpoint is present on the controller to process this request
 
 Endpoint:
-URL - http://localhost:8084/DisbursePension This endpoint only accept authenticated request so make sure that there is is valid token present in "Authentication" header. Use AUTH-SERVICE to generate tokens
+This endpoint only accept authenticated request so make sure that there is is valid token present in "Authentication" header. Use AUTH-SERVICE to generate tokens
 Valid Input
 {
     "aadhaarNumber":"123456789012",
@@ -163,11 +163,10 @@ If aadhaar number does not exist or there is some internal server error then it 
 It takes in the pensioner detail like the name, aadhaar number, pan detail, self or family or both type of pension
 Verifies if the pensioner detail is accurate by getting the data from PensionerDetail Microservice or not.
 If not, validation message “Invalid pensioner detail provided, please provide valid detail.”
-If valid, then pension calculation is done and the pension detail is returned to the Web application to be displayed on the UI.
+If valid, then pension calculation is done and the pension detail is returned.
 This service provides two controller end-points:
 Open your spring boot application and run the service.
 
-Open your browser and head to this URL - http://localhost:8082/swagger-ui.html#/ this will redirect you to Swagger UI where you can test the service.
 
 This endpoint only accept authenticated request so make sure that there is is valid token present in "Authentication" header. Use AUTH-SERVICE to generate tokens
 
@@ -176,14 +175,14 @@ Get Pension Details functionality Select /pensionerInput POST method and click t
 {
   "aadhaarNumber": "123456789012",
   "dateOfBirth": "1956-09-12",
-  "name": "Achyuth",
+  "name": "DURAI",
   "pan": "BHMER12436",
   "pensionType": "self"
 }
 Response for valid input
 
 {
-  "name": "Achyuth",
+  "name": "DURAI",
   "dateOfBirth": "12/09/1956",
   "pan": "BHMER12436",
   "pensionType": "self",
@@ -194,7 +193,7 @@ Invalid Input
 {
   "aadhaarNumber": "123456789012",
   "dateOfBirth": "1956-09-12",
-  "name": "Achyuth",
+  "name": "DURAI",
   "pan": "BHMER12436",
   "pensionType": "family"
 }
@@ -212,7 +211,7 @@ Invalid Input - wrong Aadhaar number
 {
   "aadhaarNumber": "223456789012",
   "dateOfBirth": "1956-09-12",
-  "name": "Achyuth",
+  "name": "DURAI",
   "pan": "BHMER12436",
   "pensionType": "family"
 }
