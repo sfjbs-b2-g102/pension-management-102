@@ -159,6 +159,7 @@ If aadhaar number does not exist or there is some internal server error then it 
     "message": "Invalid Request",
     "timestamp": "2021-07-30T19:45:18.3272518"
 }
+
 5. Process Pension Service
 It takes in the pensioner detail like the name, aadhaar number, pan detail, self or family or both type of pension
 Verifies if the pensioner detail is accurate by getting the data from PensionerDetail Microservice or not.
